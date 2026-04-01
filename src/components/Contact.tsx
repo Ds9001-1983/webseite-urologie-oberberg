@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -38,14 +38,13 @@ export default function Contact() {
   }
 
   return (
-    <section id="kontakt" className="py-24 lg:py-32 bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16 fade-in-up">
-          <div className="w-12 h-0.5 bg-gold mx-auto mb-6" />
-          <p className="text-gold text-sm tracking-[0.2em] uppercase mb-4">
+    <section id="kontakt" className="py-24 lg:py-36 bg-white">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="max-w-2xl mx-auto text-center mb-16 fade-in-up">
+          <span className="inline-block text-primary text-sm font-semibold tracking-wider uppercase mb-4">
             Kontakt
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-navy mb-6">
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl text-slate-dark leading-tight mb-6">
             Schreiben Sie uns
           </h2>
           <p className="text-muted text-lg leading-relaxed">
@@ -58,11 +57,11 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-3">
             {submitted ? (
-              <div className="bg-white rounded-lg p-10 shadow-sm border border-gray-100 text-center">
-                <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">
-                  <Send className="w-7 h-7 text-gold" />
+              <div className="bg-cloud rounded-3xl p-12 text-center border border-border-light">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-emerald-500" />
                 </div>
-                <h3 className="font-serif text-2xl text-navy mb-3">
+                <h3 className="font-heading text-2xl text-slate-dark mb-3">
                   Vielen Dank!
                 </h3>
                 <p className="text-muted">
@@ -73,10 +72,10 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
-                className="bg-white rounded-lg p-8 shadow-sm border border-gray-100 space-y-5"
+                className="bg-cloud rounded-3xl p-8 sm:p-10 border border-border-light space-y-5"
               >
                 <div>
-                  <label className="block text-navy text-sm font-medium mb-1.5">
+                  <label className="block text-slate-dark text-sm font-medium mb-2">
                     Name *
                   </label>
                   <input
@@ -85,17 +84,17 @@ export default function Contact() {
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold/30 outline-none transition-colors text-sm bg-cream"
+                    className="w-full px-5 py-3.5 rounded-xl border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all text-sm"
                     placeholder="Ihr vollständiger Name"
                   />
                   {errors.name && (
-                    <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                    <p className="text-red-500 text-xs mt-1.5">{errors.name}</p>
                   )}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-navy text-sm font-medium mb-1.5">
+                    <label className="block text-slate-dark text-sm font-medium mb-2">
                       E-Mail *
                     </label>
                     <input
@@ -104,17 +103,17 @@ export default function Contact() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="w-full px-4 py-3 rounded border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold/30 outline-none transition-colors text-sm bg-cream"
+                      className="w-full px-5 py-3.5 rounded-xl border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all text-sm"
                       placeholder="ihre@email.de"
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">
+                      <p className="text-red-500 text-xs mt-1.5">
                         {errors.email}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="block text-navy text-sm font-medium mb-1.5">
+                    <label className="block text-slate-dark text-sm font-medium mb-2">
                       Telefon
                     </label>
                     <input
@@ -123,14 +122,14 @@ export default function Contact() {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="w-full px-4 py-3 rounded border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold/30 outline-none transition-colors text-sm bg-cream"
+                      className="w-full px-5 py-3.5 rounded-xl border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all text-sm"
                       placeholder="Ihre Telefonnummer"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-navy text-sm font-medium mb-1.5">
+                  <label className="block text-slate-dark text-sm font-medium mb-2">
                     Nachricht *
                   </label>
                   <textarea
@@ -139,11 +138,11 @@ export default function Contact() {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded border border-gray-200 focus:border-gold focus:ring-1 focus:ring-gold/30 outline-none transition-colors text-sm bg-cream resize-none"
+                    className="w-full px-5 py-3.5 rounded-xl border border-border bg-white focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all text-sm resize-none"
                     placeholder="Ihre Nachricht an uns..."
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-xs mt-1">
+                    <p className="text-red-500 text-xs mt-1.5">
                       {errors.message}
                     </p>
                   )}
@@ -151,7 +150,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full bg-navy hover:bg-navy-light text-light font-semibold py-3.5 rounded text-sm tracking-wide transition-colors flex items-center justify-center gap-2"
+                  className="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-4 rounded-xl text-sm tracking-wide transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-primary/25"
                 >
                   <Send className="w-4 h-4" />
                   Nachricht senden
@@ -161,14 +160,14 @@ export default function Contact() {
           </div>
 
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+          <div className="lg:col-span-2 space-y-5">
+            <div className="bg-cloud rounded-2xl p-6 border border-border-light card-hover">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded bg-navy/5 flex items-center justify-center shrink-0">
-                  <MapPin className="w-4 h-4 text-gold" />
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy text-sm mb-1">
+                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
                     Adresse
                   </h4>
                   <p className="text-muted text-sm leading-relaxed">
@@ -180,18 +179,18 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+            <div className="bg-cloud rounded-2xl p-6 border border-border-light card-hover">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded bg-navy/5 flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 text-gold" />
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy text-sm mb-1">
+                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
                     Telefon
                   </h4>
                   <a
                     href="tel:+492262930810"
-                    className="text-muted hover:text-gold text-sm transition-colors"
+                    className="text-muted hover:text-primary text-sm transition-colors"
                   >
                     02262 / 93081
                   </a>
@@ -199,18 +198,18 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+            <div className="bg-cloud rounded-2xl p-6 border border-border-light card-hover">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded bg-navy/5 flex items-center justify-center shrink-0">
-                  <Mail className="w-4 h-4 text-gold" />
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy text-sm mb-1">
+                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
                     E-Mail
                   </h4>
                   <a
                     href="mailto:info@urologie-oberberg.de"
-                    className="text-muted hover:text-gold text-sm transition-colors"
+                    className="text-muted hover:text-primary text-sm transition-colors"
                   >
                     info@urologie-oberberg.de
                   </a>
@@ -218,18 +217,18 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-navy rounded-lg p-6 text-center">
-              <p className="text-light text-sm font-medium mb-2">
+            <div className="bg-primary rounded-2xl p-7 text-center">
+              <p className="text-white font-semibold text-sm mb-2">
                 Online-Termine
               </p>
-              <p className="text-muted text-xs mb-4">
+              <p className="text-white/70 text-xs mb-5">
                 Buchen Sie Ihren Termin bequem online
               </p>
               <a
                 href="https://www.doctolib.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-gold hover:bg-gold-dark text-navy font-semibold px-6 py-2.5 rounded text-sm transition-colors"
+                className="inline-block bg-white hover:bg-cloud text-primary-deep font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:shadow-lg"
               >
                 Zu Doctolib
               </a>

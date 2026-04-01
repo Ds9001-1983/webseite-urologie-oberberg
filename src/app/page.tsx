@@ -6,7 +6,7 @@ import Services from "@/components/Services";
 import Hours from "@/components/Hours";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollAnimator from "@/components/ScrollAnimator";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       <Hours />
       <Contact />
       <Footer />
-      <ScrollAnimator />
+      <SmoothScroll />
     </>
   );
 }

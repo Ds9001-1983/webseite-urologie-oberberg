@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { DM_Serif_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const dmSerif = DM_Serif_Display({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Urologische Gemeinschaftspraxis Oberberg | Nelles & Dr. Antonyan",
@@ -22,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="de" className={`${dmSerif.variable} ${plusJakarta.variable} antialiased`}>
+      <body className="min-h-screen flex flex-col font-body">{children}</body>
     </html>
   );
 }
