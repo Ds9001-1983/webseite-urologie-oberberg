@@ -1,17 +1,18 @@
+import Image from "next/image";
+
+// Reihenfolge entspricht dem Foto: links Dr. Antonyan, rechts P.G. Nelles
 const doctors = [
-  {
-    name: "Peter Günter Nelles",
-    title: "Facharzt für Urologie",
-    description:
-      "Langjährige Erfahrung in der urologischen Diagnostik und Therapie mit besonderem Schwerpunkt auf Vorsorge und Krebsfrüherkennung.",
-    image: "/images/doctor-nelles.png",
-  },
   {
     name: "Dr. med. Albert Antonyan",
     title: "Facharzt für Urologie",
     description:
       "Spezialisiert auf moderne bildgebende Verfahren wie Farbdoppler-Sonographie und 3D-Ultraschall-Diagnostik der Prostata.",
-    image: "/images/doctor-antonyan.png",
+  },
+  {
+    name: "Peter Günter Nelles",
+    title: "Facharzt für Urologie",
+    description:
+      "Langjährige Erfahrung in der urologischen Diagnostik und Therapie mit besonderem Schwerpunkt auf Vorsorge und Krebsfrüherkennung.",
   },
 ];
 
@@ -19,7 +20,7 @@ export default function Team() {
   return (
     <section id="team" className="py-24 lg:py-36 bg-cloud">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="max-w-2xl mx-auto text-center mb-16 fade-in-up">
+        <div data-reveal className="max-w-2xl mx-auto text-center mb-16">
           <span className="inline-block text-primary text-sm font-semibold tracking-wider uppercase mb-4">
             Ärzte
           </span>
@@ -32,32 +33,43 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Gemeinsames Foto */}
+        <div className="max-w-4xl mx-auto">
+          <div
+            data-team-photo
+            className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(18,51,47,0.25)]"
+          >
+            <Image
+              src="/images/aerzte-nelles-antonyan.jpg"
+              alt="Dr. med. Albert Antonyan (links) und Peter Günter Nelles (rechts)"
+              width={884}
+              height={580}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-primary-deep/20 via-transparent to-transparent" />
+          </div>
+        </div>
+
+        {/* Karten überlappen das Foto */}
+        <div
+          data-stagger
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-6 sm:-mt-14 relative z-10"
+        >
           {doctors.map((doc) => (
             <div
               key={doc.name}
-              className="group bg-white rounded-3xl overflow-hidden card-hover border border-border-light fade-in-up"
+              className="bg-white rounded-3xl p-8 card-hover border border-border-light shadow-lg shadow-primary-deep/5"
             >
-              <div className="relative aspect-4/5 overflow-hidden">
-                <img
-                  src={doc.image}
-                  alt={doc.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
-              </div>
-
-              <div className="p-8">
-                <p className="text-primary text-xs font-semibold tracking-wider uppercase mb-2">
-                  {doc.title}
-                </p>
-                <h3 className="font-heading text-xl text-slate-dark mb-3">
-                  {doc.name}
-                </h3>
-                <p className="text-muted text-sm leading-relaxed">
-                  {doc.description}
-                </p>
-              </div>
+              <p className="text-primary text-xs font-semibold tracking-wider uppercase mb-2">
+                {doc.title}
+              </p>
+              <h3 className="font-heading text-xl text-slate-dark mb-3">
+                {doc.name}
+              </h3>
+              <p className="text-muted text-sm leading-relaxed">
+                {doc.description}
+              </p>
             </div>
           ))}
         </div>

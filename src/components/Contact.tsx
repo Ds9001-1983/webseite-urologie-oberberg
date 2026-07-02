@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ export default function Contact() {
   return (
     <section id="kontakt" className="py-24 lg:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="max-w-2xl mx-auto text-center mb-16 fade-in-up">
+        <div data-reveal className="max-w-2xl mx-auto text-center mb-16">
           <span className="inline-block text-primary text-sm font-semibold tracking-wider uppercase mb-4">
             Kontakt
           </span>
@@ -53,7 +54,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto fade-in-up">
+        <div data-reveal className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-5xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-3">
             {submitted ? (
@@ -171,9 +172,9 @@ export default function Contact() {
                     Adresse
                   </h4>
                   <p className="text-muted text-sm leading-relaxed">
-                    Hauptstraße 15
+                    {site.address.street}
                     <br />
-                    51674 Wiehl
+                    {site.address.zip} {site.address.city}
                   </p>
                 </div>
               </div>
@@ -189,10 +190,10 @@ export default function Contact() {
                     Telefon
                   </h4>
                   <a
-                    href="tel:+492262930810"
+                    href={site.phoneHref}
                     className="text-muted hover:text-primary text-sm transition-colors"
                   >
-                    02262 / 93081
+                    {site.phoneDisplay}
                   </a>
                 </div>
               </div>
@@ -208,10 +209,10 @@ export default function Contact() {
                     E-Mail
                   </h4>
                   <a
-                    href="mailto:info@urologie-oberberg.de"
+                    href={`mailto:${site.email}`}
                     className="text-muted hover:text-primary text-sm transition-colors"
                   >
-                    info@urologie-oberberg.de
+                    {site.email}
                   </a>
                 </div>
               </div>
@@ -225,7 +226,7 @@ export default function Contact() {
                 Buchen Sie Ihren Termin bequem online
               </p>
               <a
-                href="https://www.doctolib.de"
+                href={site.doctolibUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white hover:bg-cloud text-primary-deep font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:shadow-lg"

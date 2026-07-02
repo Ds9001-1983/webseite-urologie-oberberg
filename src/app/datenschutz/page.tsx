@@ -1,23 +1,26 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { LogoLockup } from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Datenschutz | Urologische Gemeinschaftspraxis Oberberg",
+  title: "Datenschutz",
+  alternates: { canonical: "/datenschutz" },
 };
 
 export default function Datenschutz() {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cloud">
       {/* Header */}
-      <div className="bg-navy py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <Link
-            href="/"
-            className="text-gold font-serif text-xl font-bold hover:text-gold-light transition-colors"
-          >
-            Urologie Oberberg
+      <div className="bg-primary-deep py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center">
+          <Link href="/" aria-label="Zur Startseite">
+            <LogoLockup
+              markClassName="text-primary-light"
+              primaryTextClassName="text-white"
+              secondaryTextClassName="text-primary-light"
+            />
           </Link>
-          <h1 className="font-serif text-3xl sm:text-4xl text-light mt-6">
+          <h1 className="font-heading text-3xl sm:text-4xl text-white mt-6">
             Datenschutzerklärung
           </h1>
         </div>
@@ -25,12 +28,12 @@ export default function Datenschutz() {
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
-        <div className="prose prose-sm max-w-none text-navy-light space-y-8">
+        <div className="prose prose-sm max-w-none text-slate space-y-8">
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               1. Datenschutz auf einen Blick
             </h2>
-            <h3 className="font-semibold text-navy text-sm mb-2">
+            <h3 className="font-semibold text-slate-dark text-sm mb-2">
               Allgemeine Hinweise
             </h3>
             <p className="text-muted leading-relaxed text-sm">
@@ -42,7 +45,7 @@ export default function Datenschutz() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               2. Verantwortliche Stelle
             </h2>
             <p className="text-muted leading-relaxed text-sm">
@@ -64,10 +67,10 @@ export default function Datenschutz() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               3. Datenerfassung auf unserer Website
             </h2>
-            <h3 className="font-semibold text-navy text-sm mb-2">
+            <h3 className="font-semibold text-slate-dark text-sm mb-2">
               Kontaktformular
             </h3>
             <p className="text-muted leading-relaxed text-sm">
@@ -80,7 +83,29 @@ export default function Datenschutz() {
               Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).
             </p>
 
-            <h3 className="font-semibold text-navy text-sm mb-2 mt-4">
+            <h3 className="font-semibold text-slate-dark text-sm mb-2 mt-4">
+              Online-Bewerbungsformular
+            </h3>
+            <p className="text-muted leading-relaxed text-sm">
+              Wenn Sie sich über unser Online-Bewerbungsformular bewerben,
+              verarbeiten wir die von Ihnen angegebenen Daten (z.&nbsp;B. Name,
+              Telefonnummer, E-Mail-Adresse sowie Ihre Angaben zu Position,
+              Berufserfahrung und Verfügbarkeit) ausschließlich zur Bearbeitung
+              Ihrer Bewerbung. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO
+              i.&nbsp;V.&nbsp;m. § 26 BDSG (Anbahnung eines
+              Beschäftigungsverhältnisses) sowie Ihre Einwilligung (Art. 6
+              Abs. 1 lit. a DSGVO). Ihre Bewerbungsdaten werden vertraulich
+              behandelt und gelöscht, sobald sie für das Bewerbungsverfahren
+              nicht mehr erforderlich sind, spätestens jedoch sechs Monate nach
+              Abschluss des Verfahrens, sofern keine gesetzlichen
+              Aufbewahrungspflichten bestehen. Zur technischen Bearbeitung
+              können wir uns eines Dienstleisters (Auftragsverarbeiter im
+              Sinne von Art. 28 DSGVO) bedienen, mit dem ein entsprechender
+              Vertrag besteht; eine Weitergabe an sonstige Dritte findet nicht
+              statt.
+            </p>
+
+            <h3 className="font-semibold text-slate-dark text-sm mb-2 mt-4">
               Server-Log-Dateien
             </h3>
             <p className="text-muted leading-relaxed text-sm">
@@ -94,7 +119,7 @@ export default function Datenschutz() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               4. Ihre Rechte
             </h2>
             <p className="text-muted leading-relaxed text-sm">
@@ -109,7 +134,7 @@ export default function Datenschutz() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               5. SSL-Verschlüsselung
             </h2>
             <p className="text-muted leading-relaxed text-sm">
@@ -123,7 +148,7 @@ export default function Datenschutz() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl text-navy mb-3">
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               6. Cookies
             </h2>
             <p className="text-muted leading-relaxed text-sm">
@@ -134,10 +159,10 @@ export default function Datenschutz() {
           </section>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        <div className="mt-12 pt-8 border-t border-border">
           <Link
             href="/"
-            className="text-gold hover:text-gold-dark text-sm transition-colors"
+            className="text-primary hover:text-primary-dark text-sm transition-colors"
           >
             ← Zurück zur Startseite
           </Link>

@@ -50,7 +50,7 @@ export default function Services() {
   return (
     <section id="leistungen" className="py-24 lg:py-36 bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="max-w-2xl mx-auto text-center mb-16 fade-in-up">
+        <div data-reveal className="max-w-2xl mx-auto text-center mb-16">
           <span className="inline-block text-primary text-sm font-semibold tracking-wider uppercase mb-4">
             Leistungsspektrum
           </span>
@@ -63,7 +63,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children fade-in-up">
+        <div data-stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
             <div
               key={s.title}
@@ -80,7 +80,7 @@ export default function Services() {
           ))}
         </div>
 
-        <p className="text-center text-muted text-sm mt-12 fade-in-up">
+        <p data-reveal className="text-center text-muted text-sm mt-12">
           Nicht alle Untersuchungen werden von den Krankenkassen übernommen. Wir
           beraten Sie gerne, welche Untersuchungen in Ihrem Fall sinnvoll sind.
         </p>

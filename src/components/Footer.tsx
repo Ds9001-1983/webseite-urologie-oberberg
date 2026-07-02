@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import { LogoLockup } from "./Logo";
+import { navLinks, site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -8,18 +10,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center">
-                <span className="text-white font-heading text-lg">U</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading text-lg text-white leading-tight">
-                  Urologie
-                </span>
-                <span className="text-[10px] tracking-[0.25em] uppercase text-white/50 leading-tight">
-                  Oberberg
-                </span>
-              </div>
+            <div className="mb-4">
+              <LogoLockup
+                markClassName="text-primary-light"
+                primaryTextClassName="text-white"
+                secondaryTextClassName="text-primary-light"
+              />
             </div>
             <p className="text-white/50 text-sm leading-relaxed">
               Ihre Fachärzte für Urologie in Wiehl. Kompetente Versorgung mit
@@ -31,13 +27,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">Navigation</h4>
             <div className="space-y-3">
-              {[
-                { href: "#praxis", label: "Praxis" },
-                { href: "#team", label: "Team" },
-                { href: "#leistungen", label: "Leistungen" },
-                { href: "#sprechzeiten", label: "Sprechzeiten" },
-                { href: "#kontakt", label: "Kontakt" },
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
@@ -46,6 +36,13 @@ export default function Footer() {
                   {link.label}
                 </a>
               ))}
+              <Link
+                href="/bewerbung"
+                className="flex items-center gap-1.5 text-primary-light hover:text-white text-sm font-medium transition-colors"
+              >
+                Jetzt bewerben
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </div>
 
@@ -55,15 +52,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white/50 text-sm">
                 <MapPin className="w-4 h-4 shrink-0" />
-                Hauptstraße 15, 51674 Wiehl
+                {site.address.street}, {site.address.zip} {site.address.city}
               </div>
-              <a href="tel:+492262930810" className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
+              <a href={site.phoneHref} className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
                 <Phone className="w-4 h-4 shrink-0" />
-                02262 / 93081
+                {site.phoneDisplay}
               </a>
-              <a href="mailto:info@urologie-oberberg.de" className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
+              <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
                 <Mail className="w-4 h-4 shrink-0" />
-                info@urologie-oberberg.de
+                {site.email}
               </a>
             </div>
           </div>
@@ -71,8 +68,8 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} Urologische Gemeinschaftspraxis
-            Oberberg. Alle Rechte vorbehalten.
+            &copy; {new Date().getFullYear()} {site.legalName}. Alle Rechte
+            vorbehalten.
           </p>
           <div className="flex items-center gap-6 text-xs">
             <Link

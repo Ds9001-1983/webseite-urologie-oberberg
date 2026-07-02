@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Shield, Accessibility, ParkingSquare, CalendarCheck } from "lucide-react";
 
 const features = [
@@ -5,7 +6,7 @@ const features = [
     icon: Shield,
     title: "Erfahrung & Kompetenz",
     text: "Langjährige Expertise in der urologischen Versorgung",
-    color: "bg-blue-50 text-primary",
+    color: "bg-sky text-primary-dark",
   },
   {
     icon: Accessibility,
@@ -33,7 +34,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Text side */}
-          <div className="fade-in-up">
+          <div data-reveal>
             <span className="inline-block text-primary text-sm font-semibold tracking-wider uppercase mb-4">
               Willkommen
             </span>
@@ -46,7 +47,7 @@ export default function About() {
               ein umfassendes Spektrum moderner urologischer Diagnostik und
               Therapie in einer angenehmen, barrierefreien Praxisumgebung.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger-children fade-in-up">
+            <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {features.map((f) => (
                 <div
                   key={f.title}
@@ -67,19 +68,27 @@ export default function About() {
           </div>
 
           {/* Image side */}
-          <div className="relative fade-in-up">
-            <div className="relative rounded-3xl overflow-hidden aspect-4/5">
-              <img
+          <div data-reveal="right" className="relative">
+            <div data-parallax-img className="relative rounded-3xl overflow-hidden aspect-4/5">
+              <Image
                 src="/images/praxis.png"
                 alt="Moderne Praxisräume"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="object-cover"
               />
             </div>
             {/* Floating stats card */}
             <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl shadow-black/5 p-6 border border-border-light">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary font-heading text-2xl">20+</span>
+                  <span
+                    data-counter="20"
+                    data-suffix="+"
+                    className="text-primary font-heading text-2xl"
+                  >
+                    20+
+                  </span>
                 </div>
                 <div>
                   <p className="font-semibold text-slate-dark text-sm">Jahre Erfahrung</p>

@@ -2,14 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X, Phone } from "lucide-react";
-
-const navLinks = [
-  { href: "#praxis", label: "Praxis" },
-  { href: "#team", label: "Team" },
-  { href: "#leistungen", label: "Leistungen" },
-  { href: "#sprechzeiten", label: "Sprechzeiten" },
-  { href: "#kontakt", label: "Kontakt" },
-];
+import { LogoLockup } from "./Logo";
+import { navLinks, site } from "@/lib/site";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,18 +25,14 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <div className="flex items-center justify-between h-20">
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-              <span className="text-white font-heading text-lg">U</span>
-            </div>
-            <div className="flex flex-col">
-              <span className={`font-heading text-lg leading-tight transition-colors duration-500 ${scrolled ? "text-primary-deep" : "text-white"}`}>
-                Urologie
-              </span>
-              <span className={`text-[10px] tracking-[0.25em] uppercase leading-tight transition-colors duration-500 ${scrolled ? "text-muted" : "text-white/70"}`}>
-                Oberberg
-              </span>
-            </div>
+          <a href="#" className="group" aria-label="Zum Seitenanfang">
+            <LogoLockup
+              markClassName={scrolled ? "text-primary" : "text-white"}
+              primaryTextClassName={scrolled ? "text-slate-dark" : "text-white"}
+              secondaryTextClassName={
+                scrolled ? "text-primary-light" : "text-white/70"
+              }
+            />
           </a>
 
           <div className="hidden lg:flex items-center gap-10">
@@ -50,6 +40,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                data-nav
                 className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-primary ${
                   scrolled ? "text-slate" : "text-white/90"
                 }`}
@@ -58,7 +49,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="tel:+492262930810"
+              href={site.phoneHref}
               className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
             >
               <Phone className="w-3.5 h-3.5" />
@@ -93,7 +84,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="tel:+492262930810"
+            href={site.phoneHref}
             onClick={() => setMobileOpen(false)}
             className="flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-full text-sm transition-colors mt-4"
           >

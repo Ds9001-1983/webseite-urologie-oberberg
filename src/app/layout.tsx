@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Serif_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const dmSerif = DM_Serif_Display({
@@ -16,18 +17,33 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Urologische Gemeinschaftspraxis Oberberg | Nelles & Dr. Antonyan",
+  metadataBase: new URL(site.url),
+  title: {
+    default: "Urologie Oberberg | Urologische Gemeinschaftspraxis Wiehl",
+    template: "%s | Urologie Oberberg",
+  },
   description:
     "Ihre Fachärzte für Urologie in Wiehl. Vorsorge, Krebsfrüherkennung, Sonographie und mehr. Urologische Gemeinschaftspraxis P.G. Nelles & Dr. A. Antonyan.",
-  keywords:
-    "Urologie, Wiehl, Oberberg, Urologe, Vorsorge, Krebsfrüherkennung, Sonographie, Prostata",
+  keywords: [
+    "Urologie",
+    "Wiehl",
+    "Oberberg",
+    "Urologe",
+    "Vorsorge",
+    "Krebsfrüherkennung",
+    "Sonographie",
+    "Prostata",
+  ],
+  robots: { index: true, follow: true },
   openGraph: {
-    title: "Urologische Gemeinschaftspraxis Oberberg",
-    description:
-      "Ihre Spezialisten für Urologie in Wiehl – Vorsorge, Diagnostik und Therapie.",
     type: "website",
     locale: "de_DE",
+    siteName: site.name,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#12332F",
 };
 
 export default function RootLayout({
