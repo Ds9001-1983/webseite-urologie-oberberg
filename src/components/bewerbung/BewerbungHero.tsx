@@ -36,8 +36,8 @@ export default function BewerbungHero() {
           <div>
             <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(18,51,47,0.25)]">
               <Image
-                src="/images/aerzte-nelles-antonyan.jpg"
-                alt="Dr. med. Albert Antonyan und Peter Günter Nelles, Fachärzte für Urologie in Wiehl"
+                src="/images/aerzte-gulans-antonyan.jpg"
+                alt="Dr. med. Albert Antonyan und Aleksejs Gulans, Fachärzte für Urologie in Wiehl"
                 width={884}
                 height={580}
                 priority
@@ -46,7 +46,7 @@ export default function BewerbungHero() {
               />
             </div>
             <p className="text-muted text-sm text-center mt-4">
-              Dr. med. Albert Antonyan &amp; Peter Günter Nelles – deine
+              Dr. med. Albert Antonyan &amp; Aleksejs Gulans – deine
               zukünftigen Chefs
             </p>
           </div>

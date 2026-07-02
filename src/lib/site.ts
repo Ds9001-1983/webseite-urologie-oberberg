@@ -17,7 +17,7 @@ export const site = {
   doctolibUrl: "https://www.doctolib.de",
   doctors: [
     "Dr. med. Albert Antonyan",
-    "Peter Günter Nelles",
+    "Aleksejs Gulans",
   ],
 } as const;
 

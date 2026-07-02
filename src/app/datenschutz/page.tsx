@@ -54,7 +54,7 @@ export default function Datenschutz() {
             <p className="text-muted leading-relaxed text-sm mt-2">
               Urologische Gemeinschaftspraxis
               <br />
-              P.G. Nelles & Dr. A. Antonyan
+              A. Gulans & Dr. A. Antonyan
               <br />
               Hauptstraße 15
               <br />

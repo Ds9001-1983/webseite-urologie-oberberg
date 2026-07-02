@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-// Reihenfolge entspricht dem Foto: links Dr. Antonyan, rechts P.G. Nelles
+// Reihenfolge entspricht dem Foto: links Dr. Antonyan, rechts Gulans
 const doctors = [
   {
     name: "Dr. med. Albert Antonyan",
@@ -9,7 +9,7 @@ const doctors = [
       "Spezialisiert auf moderne bildgebende Verfahren wie Farbdoppler-Sonographie und 3D-Ultraschall-Diagnostik der Prostata.",
   },
   {
-    name: "Peter Günter Nelles",
+    name: "Aleksejs Gulans",
     title: "Facharzt für Urologie",
     description:
       "Langjährige Erfahrung in der urologischen Diagnostik und Therapie mit besonderem Schwerpunkt auf Vorsorge und Krebsfrüherkennung.",
@@ -40,8 +40,8 @@ export default function Team() {
             className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(18,51,47,0.25)]"
           >
             <Image
-              src="/images/aerzte-nelles-antonyan.jpg"
-              alt="Dr. med. Albert Antonyan (links) und Peter Günter Nelles (rechts)"
+              src="/images/aerzte-gulans-antonyan.jpg"
+              alt="Dr. med. Albert Antonyan (links) und Aleksejs Gulans (rechts)"
               width={884}
               height={580}
               sizes="(min-width: 1024px) 896px, 100vw"

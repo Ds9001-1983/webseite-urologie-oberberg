@@ -26,7 +26,7 @@ const physicianJsonLd = {
   "@type": "Physician",
   name: site.legalName,
   url: site.url,
-  image: `${site.url}/images/aerzte-nelles-antonyan.jpg`,
+  image: `${site.url}/images/aerzte-gulans-antonyan.jpg`,
   telephone: phoneE164,
   email: site.email,
   medicalSpecialty: "Urologic",

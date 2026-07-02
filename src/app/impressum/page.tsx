@@ -36,7 +36,7 @@ export default function Impressum() {
             <p className="text-muted leading-relaxed">
               Urologische Gemeinschaftspraxis
               <br />
-              P.G. Nelles & Dr. A. Antonyan
+              A. Gulans & Dr. A. Antonyan
               <br />
               Hauptstraße 15
               <br />
@@ -49,7 +49,7 @@ export default function Impressum() {
               Vertreten durch
             </h2>
             <p className="text-muted leading-relaxed">
-              Peter Günter Nelles
+              Aleksejs Gulans
               <br />
               Dr. med. Albert Antonyan
             </p>

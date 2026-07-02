@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     locale: "de_DE",
     images: [
       {
-        url: "/images/aerzte-nelles-antonyan.jpg",
+        url: "/images/aerzte-gulans-antonyan.jpg",
         width: 884,
         height: 580,
       },

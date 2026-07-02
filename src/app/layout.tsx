@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Urologie Oberberg",
   },
   description:
-    "Ihre Fachärzte für Urologie in Wiehl. Vorsorge, Krebsfrüherkennung, Sonographie und mehr. Urologische Gemeinschaftspraxis P.G. Nelles & Dr. A. Antonyan.",
+    "Ihre Fachärzte für Urologie in Wiehl. Vorsorge, Krebsfrüherkennung, Sonographie und mehr. Urologische Gemeinschaftspraxis A. Gulans & Dr. A. Antonyan.",
   keywords: [
     "Urologie",
     "Wiehl",
