@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LogoLockup } from "@/components/Logo";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Impressum",
@@ -34,13 +35,11 @@ export default function Impressum() {
               Angaben gemäß § 5 DDG
             </h2>
             <p className="text-muted leading-relaxed">
-              Urologische Gemeinschaftspraxis
+              {site.legalName}
               <br />
-              A. Gulans & Dr. A. Antonyan
+              {site.address.street}
               <br />
-              Hauptstraße 15
-              <br />
-              51674 Wiehl
+              {site.address.zip} {site.address.city}
             </p>
           </section>
 
@@ -49,18 +48,18 @@ export default function Impressum() {
               Vertreten durch
             </h2>
             <p className="text-muted leading-relaxed">
-              Aleksejs Gulans
-              <br />
               Dr. med. Albert Antonyan
+              <br />
+              Aleksejs Gulans
             </p>
           </section>
 
           <section>
             <h2 className="font-heading text-xl text-slate-dark mb-3">Kontakt</h2>
             <p className="text-muted leading-relaxed">
-              Telefon: 02262 / 93081
+              Telefon: {site.phoneDisplay}
               <br />
-              E-Mail: info@urologie-oberberg.de
+              E-Mail: {site.email}
             </p>
           </section>
 
@@ -107,6 +106,30 @@ export default function Impressum() {
               Berufsordnung der Ärztekammer Nordrhein
               <br />
               Heilberufsgesetz NRW
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
+              Berufshaftpflichtversicherung
+            </h2>
+            <p className="text-muted leading-relaxed">
+              Alte Leipziger Versicherung Aktiengesellschaft
+              <br />
+              Alte Leipziger-Platz 1<br />
+              61440 Oberursel
+              <br />
+              Geltungsbereich: Deutschland
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
+              Verbraucherstreitbeilegung
+            </h2>
+            <p className="text-muted leading-relaxed text-sm">
+              Wir nehmen nicht an einem Streitbeilegungsverfahren vor einer
+              Verbraucherschlichtungsstelle teil.
             </p>
           </section>
 

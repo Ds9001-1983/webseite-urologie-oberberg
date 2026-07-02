@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { LogoLockup } from "@/components/Logo";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
@@ -52,17 +53,15 @@ export default function Datenschutz() {
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p className="text-muted leading-relaxed text-sm mt-2">
-              Urologische Gemeinschaftspraxis
+              {site.legalName}
               <br />
-              A. Gulans & Dr. A. Antonyan
+              {site.address.street}
               <br />
-              Hauptstraße 15
+              {site.address.zip} {site.address.city}
               <br />
-              51674 Wiehl
+              Telefon: {site.phoneDisplay}
               <br />
-              Telefon: 02262 / 93081
-              <br />
-              E-Mail: info@urologie-oberberg.de
+              E-Mail: {site.email}
             </p>
           </section>
 

@@ -34,7 +34,7 @@ export default function Hours() {
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cloud text-slate-dark font-semibold px-6 py-3.5 rounded-full text-sm border border-border transition-all duration-300 hover:shadow-md"
               >
                 <ExternalLink className="w-4 h-4" />
-                Online buchen
+                Termin buchen
               </a>
             </div>
           </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, CalendarCheck } from "lucide-react";
+import { ArrowRight, CalendarCheck, Syringe } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -43,11 +44,13 @@ export default function Hero() {
 
           <div data-hero-item className="flex flex-col sm:flex-row items-start gap-4">
             <a
-              href="#kontakt"
+              href={site.doctolibUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center gap-3 bg-white text-primary-deep font-semibold px-7 py-4 rounded-full text-sm transition-all duration-300 hover:shadow-2xl hover:shadow-white/20 hover:scale-[1.02]"
             >
               <CalendarCheck className="w-4 h-4" />
-              Termin vereinbaren
+              Termin buchen
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a
@@ -56,6 +59,33 @@ export default function Hero() {
             >
               Unsere Leistungen
             </a>
+          </div>
+
+          {/* Vasektomie-Hinweis */}
+          <div
+            data-hero-item
+            className="mt-8 flex items-start gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 max-w-xl"
+          >
+            <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+              <Syringe className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm mb-1">
+                Vasektomie – Termine zeitnah möglich
+              </p>
+              <p className="text-white/70 text-sm leading-relaxed mb-3">
+                Persönliche Beratung und Aufklärung. Ambulant &amp;
+                minimal-invasiv mit der No-Scalpel-Methode.
+              </p>
+              <a
+                href={`mailto:${site.vasektomieEmail}`}
+                className="inline-flex items-center gap-1.5 text-white text-sm font-semibold underline underline-offset-4 hover:text-white/80 transition-colors"
+              >
+                Bitte schreiben Sie uns an, wir melden uns schnellstmöglich
+                bei Ihnen
+                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

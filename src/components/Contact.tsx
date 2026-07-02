@@ -231,7 +231,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-block bg-white hover:bg-cloud text-primary-deep font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:shadow-lg"
               >
-                Zu Doctolib
+                Termin buchen
               </a>
             </div>
           </div>
