@@ -25,7 +25,7 @@ export const metadata: Metadata = {
       {
         url: "/images/aerzte-gulans-antonyan-full.jpg",
         width: 2048,
-        height: 1343,
+        height: 1638,
       },
     ],
   },

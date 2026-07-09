@@ -43,7 +43,7 @@ export default function Team() {
               src="/images/aerzte-gulans-antonyan-full.jpg"
               alt="Dr. med. Albert Antonyan (links) und Aleksejs Gulans (rechts)"
               width={2048}
-              height={1343}
+              height={1638}
               sizes="(min-width: 1104px) 1024px, 100vw"
               className="w-full h-auto object-cover"
             />

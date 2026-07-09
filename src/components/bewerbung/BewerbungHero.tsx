@@ -39,7 +39,7 @@ export default function BewerbungHero() {
                 src="/images/aerzte-gulans-antonyan-full.jpg"
                 alt="Dr. med. Albert Antonyan und Aleksejs Gulans, Fachärzte für Urologie in Wiehl"
                 width={2048}
-                height={1343}
+                height={1638}
                 priority
                 sizes="(min-width: 1024px) 480px, 100vw"
                 className="w-full h-auto object-cover"
