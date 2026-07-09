@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     locale: "de_DE",
     images: [
       {
-        url: "/images/aerzte-gulans-antonyan.jpg",
-        width: 884,
-        height: 580,
+        url: "/images/aerzte-gulans-antonyan-full.jpg",
+        width: 2048,
+        height: 1343,
       },
     ],
   },

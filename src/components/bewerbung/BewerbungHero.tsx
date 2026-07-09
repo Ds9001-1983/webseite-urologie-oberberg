@@ -36,10 +36,10 @@ export default function BewerbungHero() {
           <div>
             <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(18,51,47,0.25)]">
               <Image
-                src="/images/aerzte-gulans-antonyan.jpg"
+                src="/images/aerzte-gulans-antonyan-full.jpg"
                 alt="Dr. med. Albert Antonyan und Aleksejs Gulans, Fachärzte für Urologie in Wiehl"
-                width={884}
-                height={580}
+                width={2048}
+                height={1343}
                 priority
                 sizes="(min-width: 1024px) 480px, 100vw"
                 className="w-full h-auto object-cover"
