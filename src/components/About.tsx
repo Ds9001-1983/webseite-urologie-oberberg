@@ -71,8 +71,8 @@ export default function About() {
           <div data-reveal="right" className="relative">
             <div data-parallax-img className="relative rounded-3xl overflow-hidden aspect-4/5">
               <Image
-                src="/images/praxis.png"
-                alt="Moderne Praxisräume"
+                src="/images/praxis-behandlungsraum.jpg"
+                alt="Moderner urologischer Behandlungsraum mit Untersuchungsstuhl und Endoskopie-Turm"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"

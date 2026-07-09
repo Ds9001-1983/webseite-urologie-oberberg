@@ -19,7 +19,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
  *   data-hero / -bg / -title / -item / -content   Hero-Animationen
  *   data-parallax-img                     sanfter Bild-Parallax (scrub)
  *   data-counter="20" data-suffix="+"     Zähler-Animation
- *   data-team-photo                       Clip-Path-Reveal
  *   data-nav (Navbar-Links)               Scroll-Spy (.nav-active)
  */
 export default function ScrollFX() {
@@ -220,22 +219,6 @@ export default function ScrollFX() {
           scrollTrigger: { trigger: el, start: "top 85%", once: true },
         });
       });
-
-      // Team-Foto: Clip-Path-Reveal
-      const teamPhoto = document.querySelector("[data-team-photo]");
-      if (teamPhoto) {
-        gsap.fromTo(
-          teamPhoto,
-          { clipPath: "inset(12% 6% 12% 6% round 24px)", scale: 1.04 },
-          {
-            clipPath: "inset(0% 0% 0% 0% round 24px)",
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.inOut",
-            scrollTrigger: { trigger: teamPhoto, start: "top 75%", once: true },
-          }
-        );
-      }
 
       // Scroll-Spy: aktive Section in der Navbar markieren
       ["praxis", "team", "leistungen", "sprechzeiten", "karriere", "kontakt"].forEach(

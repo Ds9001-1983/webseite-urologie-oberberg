@@ -39,16 +39,16 @@ export const navLinks = [
 ] as const;
 
 export const openingHours = [
-  { day: "Montag", time: "08:00 – 12:00 & 14:00 – 17:00" },
-  { day: "Dienstag", time: "08:00 – 12:00 & 14:00 – 17:00" },
-  { day: "Mittwoch", time: "08:00 – 12:00" },
-  { day: "Donnerstag", time: "08:00 – 12:00 & 14:00 – 17:00" },
-  { day: "Freitag", time: "08:00 – 12:00" },
+  { day: "Montag – Freitag", time: "07:45 – 12:00" },
+  { day: "Montag (Nachmittag)", time: "14:30 – 16:00" },
 ] as const;
 
 // Für schema.org openingHoursSpecification
 export const openingHoursSpec = [
-  { days: ["Monday", "Tuesday", "Thursday"], opens: "08:00", closes: "12:00" },
-  { days: ["Monday", "Tuesday", "Thursday"], opens: "14:00", closes: "17:00" },
-  { days: ["Wednesday", "Friday"], opens: "08:00", closes: "12:00" },
+  {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "07:45",
+    closes: "12:00",
+  },
+  { days: ["Monday"], opens: "14:30", closes: "16:00" },
 ] as const;

@@ -65,7 +65,7 @@ export default function Hours() {
               </div>
               <div className="px-6 py-4 bg-cloud/50">
                 <p className="text-muted text-xs text-center">
-                  Samstag & Sonntag geschlossen
+                  Oder nach Vereinbarung · Samstag & Sonntag geschlossen
                 </p>
               </div>
             </div>

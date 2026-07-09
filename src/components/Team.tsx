@@ -34,9 +34,9 @@ export default function Team() {
         </div>
 
         {/* Gemeinsames Foto */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div
-            data-team-photo
+            data-reveal="scale"
             className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(18,51,47,0.25)]"
           >
             <Image
@@ -44,7 +44,7 @@ export default function Team() {
               alt="Dr. med. Albert Antonyan (links) und Aleksejs Gulans (rechts)"
               width={884}
               height={580}
-              sizes="(min-width: 1024px) 896px, 100vw"
+              sizes="(min-width: 1104px) 1024px, 100vw"
               className="w-full h-auto object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-t from-primary-deep/20 via-transparent to-transparent" />
