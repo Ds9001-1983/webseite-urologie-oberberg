@@ -52,6 +52,7 @@ export default function Hero() {
             >
               <CalendarCheck className="w-4 h-4" />
               Termin buchen
+              <span className="sr-only"> (öffnet in neuem Tab)</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a

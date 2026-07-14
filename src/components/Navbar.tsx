@@ -41,7 +41,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 data-nav
-                className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-primary ${
+                className={`text-sm font-medium tracking-wide transition-colors duration-300 hover:text-primary py-2 ${
                   scrolled ? "text-slate" : "text-white/90"
                 }`}
               >

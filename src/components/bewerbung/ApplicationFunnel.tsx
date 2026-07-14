@@ -559,6 +559,7 @@ export default function ApplicationFunnel() {
                           className="text-primary underline hover:text-primary-dark"
                         >
                           Datenschutzerklärung
+                          <span className="sr-only"> (öffnet in neuem Tab)</span>
                         </a>
                         .
                       </span>

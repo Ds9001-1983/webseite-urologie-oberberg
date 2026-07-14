@@ -39,6 +39,7 @@ export default function QuickApply() {
               >
                 <MessageCircle className="w-4 h-4" />
                 WhatsApp
+                <span className="sr-only"> (öffnet in neuem Tab)</span>
               </a>
             )}
           </div>

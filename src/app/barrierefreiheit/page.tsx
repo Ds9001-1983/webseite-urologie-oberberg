@@ -175,6 +175,7 @@ export default function Barrierefreiheit() {
                 className="text-primary hover:text-primary-dark underline underline-offset-2 transition-colors"
               >
                 www.mlbf-barrierefrei.de
+                <span className="sr-only"> (öffnet in neuem Tab)</span>
               </a>
             </p>
           </section>

@@ -35,6 +35,7 @@ export default function Hours() {
               >
                 <ExternalLink className="w-4 h-4" />
                 Termin buchen
+                <span className="sr-only"> (öffnet in neuem Tab)</span>
               </a>
             </div>
           </div>

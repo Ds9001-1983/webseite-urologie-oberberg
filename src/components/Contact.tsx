@@ -288,6 +288,7 @@ export default function Contact() {
                 className="inline-block bg-white hover:bg-cloud text-primary-deep font-semibold px-6 py-3 rounded-full text-sm transition-all duration-300 hover:shadow-lg"
               >
                 Termin buchen
+                <span className="sr-only"> (öffnet in neuem Tab)</span>
               </a>
             </div>
           </div>
