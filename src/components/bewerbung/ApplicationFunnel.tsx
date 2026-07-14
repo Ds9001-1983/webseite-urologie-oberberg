@@ -228,13 +228,13 @@ export default function ApplicationFunnel() {
               <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-8 h-8 text-emerald-500" />
               </div>
-              <h3
+              <h2
                 ref={headingRef}
                 tabIndex={-1}
                 className="font-heading text-2xl text-slate-dark mb-3 outline-none"
               >
                 Danke{firstName ? `, ${firstName}` : ""}! Deine Bewerbung ist da.
-              </h3>
+              </h2>
               <p className="text-muted leading-relaxed mb-8">
                 Wir melden uns innerhalb von 24–48 Stunden bei dir – meistens
                 sogar schneller.
@@ -252,13 +252,13 @@ export default function ApplicationFunnel() {
             </div>
           ) : status === "error" ? (
             <div className="text-center py-6">
-              <h3
+              <h2
                 ref={headingRef}
                 tabIndex={-1}
                 className="font-heading text-2xl text-slate-dark mb-3 outline-none"
               >
                 Das hat leider nicht geklappt.
-              </h3>
+              </h2>
               <p className="text-muted leading-relaxed mb-8">
                 Deine Bewerbung konnte gerade nicht übertragen werden. Versuch
                 es gleich nochmal – oder melde dich direkt bei uns. Deine
@@ -299,14 +299,14 @@ export default function ApplicationFunnel() {
             >
               {currentChoiceStep ? (
                 <>
-                  <h3
+                  <h2
                     ref={headingRef}
                     tabIndex={-1}
                     id={`funnel-question-${currentChoiceStep.id}`}
                     className="font-heading text-xl sm:text-2xl text-slate-dark mb-6 outline-none"
                   >
                     {currentChoiceStep.question}
-                  </h3>
+                  </h2>
                   <div
                     role="group"
                     aria-labelledby={`funnel-question-${currentChoiceStep.id}`}
@@ -362,13 +362,13 @@ export default function ApplicationFunnel() {
                 </>
               ) : (
                 <form onSubmit={handleSubmit} noValidate className="flex flex-col">
-                  <h3
+                  <h2
                     ref={headingRef}
                     tabIndex={-1}
                     className="font-heading text-xl sm:text-2xl text-slate-dark mb-2 outline-none"
                   >
                     Fast geschafft! Wie erreichen wir dich?
-                  </h3>
+                  </h2>
                   <p className="text-muted text-sm leading-relaxed mb-6">
                     Kein Lebenslauf, kein Anschreiben – wir melden uns einfach
                     bei dir.
@@ -391,6 +391,11 @@ export default function ApplicationFunnel() {
                         type="text"
                         autoComplete="name"
                         maxLength={NAME_MAX_LENGTH}
+                        aria-required="true"
+                        aria-invalid={fieldErrors.name ? true : undefined}
+                        aria-describedby={
+                          fieldErrors.name ? "funnel-name-error" : undefined
+                        }
                         value={answers.name}
                         onChange={(e) =>
                           setAnswers({ ...answers, name: e.target.value })
@@ -399,7 +404,11 @@ export default function ApplicationFunnel() {
                         placeholder="Dein Name"
                       />
                       {fieldErrors.name && (
-                        <p className="text-red-500 text-xs mt-1.5">
+                        <p
+                          id="funnel-name-error"
+                          role="alert"
+                          className="text-red-700 text-xs mt-1.5"
+                        >
                           {fieldErrors.name}
                         </p>
                       )}
@@ -417,6 +426,11 @@ export default function ApplicationFunnel() {
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
+                        aria-required="true"
+                        aria-invalid={fieldErrors.phone ? true : undefined}
+                        aria-describedby={
+                          fieldErrors.phone ? "funnel-phone-error" : undefined
+                        }
                         value={answers.phone}
                         onChange={(e) =>
                           setAnswers({ ...answers, phone: e.target.value })
@@ -425,7 +439,11 @@ export default function ApplicationFunnel() {
                         placeholder="z. B. 0151 12345678"
                       />
                       {fieldErrors.phone && (
-                        <p className="text-red-500 text-xs mt-1.5">
+                        <p
+                          id="funnel-phone-error"
+                          role="alert"
+                          className="text-red-700 text-xs mt-1.5"
+                        >
                           {fieldErrors.phone}
                         </p>
                       )}
@@ -445,6 +463,10 @@ export default function ApplicationFunnel() {
                         autoComplete="email"
                         enterKeyHint="send"
                         maxLength={EMAIL_MAX_LENGTH}
+                        aria-invalid={fieldErrors.email ? true : undefined}
+                        aria-describedby={
+                          fieldErrors.email ? "funnel-email-error" : undefined
+                        }
                         value={answers.email}
                         onChange={(e) =>
                           setAnswers({ ...answers, email: e.target.value })
@@ -453,7 +475,11 @@ export default function ApplicationFunnel() {
                         placeholder="deine@email.de"
                       />
                       {fieldErrors.email && (
-                        <p className="text-red-500 text-xs mt-1.5">
+                        <p
+                          id="funnel-email-error"
+                          role="alert"
+                          className="text-red-700 text-xs mt-1.5"
+                        >
                           {fieldErrors.email}
                         </p>
                       )}
@@ -512,10 +538,15 @@ export default function ApplicationFunnel() {
                       <input
                         type="checkbox"
                         checked={answers.consent}
+                        aria-required="true"
+                        aria-invalid={fieldErrors.consent ? true : undefined}
+                        aria-describedby={
+                          fieldErrors.consent ? "funnel-consent-error" : undefined
+                        }
                         onChange={(e) =>
                           setAnswers({ ...answers, consent: e.target.checked })
                         }
-                        className="mt-0.5 w-4 h-4 rounded border-border accent-[#2F7E78] shrink-0"
+                        className="mt-0.5 w-4 h-4 rounded border-border accent-primary shrink-0"
                       />
                       <span className="text-muted text-xs leading-relaxed">
                         Ich bin damit einverstanden, dass meine Angaben zur
@@ -533,7 +564,11 @@ export default function ApplicationFunnel() {
                       </span>
                     </label>
                     {fieldErrors.consent && (
-                      <p className="text-red-500 text-xs">
+                      <p
+                        id="funnel-consent-error"
+                        role="alert"
+                        className="text-red-700 text-xs"
+                      >
                         {fieldErrors.consent}
                       </p>
                     )}

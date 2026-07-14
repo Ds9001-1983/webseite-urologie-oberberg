@@ -12,7 +12,7 @@ export default function BewerbungHeader() {
             <LogoLockup
               markClassName="text-primary"
               primaryTextClassName="text-slate-dark"
-              secondaryTextClassName="text-primary-light"
+              secondaryTextClassName="text-primary-dark"
             />
           </Link>
           <div className="flex items-center gap-4">
@@ -25,6 +25,7 @@ export default function BewerbungHeader() {
             </Link>
             <a
               href={site.phoneHref}
+              aria-label={`Anrufen: ${site.phoneDisplay}`}
               className="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-4 sm:px-5 py-2.5 rounded-full text-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
             >
               <Phone className="w-3.5 h-3.5" />

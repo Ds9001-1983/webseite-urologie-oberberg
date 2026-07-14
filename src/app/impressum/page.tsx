@@ -28,7 +28,7 @@ export default function Impressum() {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <main id="main" className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
         <div className="prose prose-sm max-w-none text-slate space-y-8">
           <section>
             <h2 className="font-heading text-xl text-slate-dark mb-3">
@@ -135,6 +135,20 @@ export default function Impressum() {
 
           <section>
             <h2 className="font-heading text-xl text-slate-dark mb-3">
+              Bildnachweis
+            </h2>
+            <p className="text-muted leading-relaxed text-sm">
+              Das Foto unserer Ärzte ist eine echte Aufnahme. Die
+              Innenraum-Darstellungen auf der Startseite (Titelbild und
+              Abschnitt „Unsere Praxis“) sind mit Hilfe künstlicher Intelligenz
+              erstellte Symbolbilder; sie zeigen nicht die tatsächlichen
+              Praxisräume. Entsprechende Bilder sind direkt am Bild als
+              „Symbolbild – mit KI erstellt“ gekennzeichnet.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-xl text-slate-dark mb-3">
               Haftungsausschluss
             </h2>
             <h3 className="font-semibold text-slate-dark text-sm mb-2">
@@ -169,7 +183,7 @@ export default function Impressum() {
             ← Zurück zur Startseite
           </Link>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

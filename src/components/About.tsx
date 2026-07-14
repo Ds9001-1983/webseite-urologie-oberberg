@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Shield, Accessibility, ParkingSquare, CalendarCheck } from "lucide-react";
+import AiBadge from "./AiBadge";
 
 const features = [
   {
@@ -72,11 +73,12 @@ export default function About() {
             <div data-parallax-img className="relative rounded-3xl overflow-hidden aspect-4/5">
               <Image
                 src="/images/praxis-behandlungsraum.jpg"
-                alt="Moderner urologischer Behandlungsraum mit Untersuchungsstuhl und Endoskopie-Turm"
+                alt="Symbolbild (KI-generiert): Moderner urologischer Behandlungsraum mit Untersuchungsstuhl und Endoskopie-Turm"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
                 className="object-cover"
               />
+              <AiBadge className="bottom-3 right-3" />
             </div>
             {/* Floating stats card */}
             <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl shadow-black/5 p-6 border border-border-light">

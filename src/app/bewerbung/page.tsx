@@ -72,7 +72,7 @@ export default function BewerbungPage() {
   return (
     <>
       <BewerbungHeader />
-      <main>
+      <main id="main">
         <BewerbungHero />
         <div className="-mt-20">
           <ApplicationFunnel />
@@ -85,31 +85,44 @@ export default function BewerbungPage() {
 
       {/* Mini-Footer — bewusst ohne Section-Anker der Startseite */}
       <footer className="bg-primary-deep py-10">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-xs text-center sm:text-left">
-            {site.legalName} · {site.address.street} · {site.address.zip}{" "}
-            {site.address.city}
-          </p>
-          <div className="flex items-center gap-5 text-xs">
-            <Link
-              href="/impressum"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              Impressum
-            </Link>
-            <Link
-              href="/datenschutz"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              Datenschutz
-            </Link>
-            <Link
-              href="/"
-              className="text-white/50 hover:text-white transition-colors"
-            >
-              Zur Startseite
-            </Link>
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-white/70 text-xs text-center sm:text-left">
+              {site.legalName} · {site.address.street} · {site.address.zip}{" "}
+              {site.address.city}
+            </p>
+            <div className="flex items-center gap-5 text-xs">
+              <Link
+                href="/impressum"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/datenschutz"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Datenschutz
+              </Link>
+              <Link
+                href="/barrierefreiheit"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Barrierefreiheit
+              </Link>
+              <Link
+                href="/"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Zur Startseite
+              </Link>
+            </div>
           </div>
+          {/* Transparenzhinweis KI-Bilder (EU AI Act Art. 50) */}
+          <p className="text-white/70 text-[11px] text-center sm:text-left">
+            Einzelne Bilder auf dieser Website sind Symbolbilder und wurden mit
+            Unterstützung künstlicher Intelligenz erstellt.
+          </p>
         </div>
       </footer>
 

@@ -17,7 +17,7 @@ export default function Footer() {
                 secondaryTextClassName="text-primary-light"
               />
             </div>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-white/70 text-sm leading-relaxed">
               Ihre Fachärzte für Urologie in Wiehl. Kompetente Versorgung mit
               modernster Diagnostik.
             </p>
@@ -25,13 +25,13 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Navigation</h4>
+            <p className="text-white font-semibold text-sm mb-4">Navigation</p>
             <div className="space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-white/50 hover:text-white text-sm transition-colors"
+                  className="block text-white/70 hover:text-white text-sm transition-colors"
                 >
                   {link.label}
                 </a>
@@ -48,17 +48,17 @@ export default function Footer() {
 
           {/* Contact info */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Kontakt</h4>
+            <p className="text-white font-semibold text-sm mb-4">Kontakt</p>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-white/50 text-sm">
+              <div className="flex items-center gap-3 text-white/70 text-sm">
                 <MapPin className="w-4 h-4 shrink-0" />
                 {site.address.street}, {site.address.zip} {site.address.city}
               </div>
-              <a href={site.phoneHref} className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
+              <a href={site.phoneHref} className="flex items-center gap-3 text-white/70 hover:text-white text-sm transition-colors">
                 <Phone className="w-4 h-4 shrink-0" />
                 {site.phoneDisplay}
               </a>
-              <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-white/50 hover:text-white text-sm transition-colors">
+              <a href={`mailto:${site.email}`} className="flex items-center gap-3 text-white/70 hover:text-white text-sm transition-colors">
                 <Mail className="w-4 h-4 shrink-0" />
                 {site.email}
               </a>
@@ -66,24 +66,38 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
-            &copy; {new Date().getFullYear()} {site.legalName}. Alle Rechte
-            vorbehalten.
+        <div className="pt-8 border-t border-white/10">
+          {/* Transparenzhinweis KI-Bilder (EU AI Act Art. 50) */}
+          <p className="text-white/70 text-xs mb-4">
+            Einzelne Bilder auf dieser Website sind Symbolbilder und wurden mit
+            Unterstützung künstlicher Intelligenz erstellt. Sie sind direkt am
+            Bild gekennzeichnet.
           </p>
-          <div className="flex items-center gap-6 text-xs">
-            <Link
-              href="/impressum"
-              className="text-white/30 hover:text-white/60 transition-colors"
-            >
-              Impressum
-            </Link>
-            <Link
-              href="/datenschutz"
-              className="text-white/30 hover:text-white/60 transition-colors"
-            >
-              Datenschutz
-            </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-white/70 text-xs">
+              &copy; {new Date().getFullYear()} {site.legalName}. Alle Rechte
+              vorbehalten.
+            </p>
+            <div className="flex items-center gap-6 text-xs">
+              <Link
+                href="/impressum"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/datenschutz"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Datenschutz
+              </Link>
+              <Link
+                href="/barrierefreiheit"
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                Barrierefreiheit
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -23,6 +23,51 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Sichtbarer Tastaturfokus (nur :focus-visible — kein Ring bei Mausklick).
+   In @layer base, damit die Tailwind-Focus-Utilities der Formulare
+   (focus:ring-2 etc.) weiterhin Vorrang haben. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Auf dunklen Flächen (Footer, CTA-Buttons) weißer Fokusring */
+  .bg-primary-deep :focus-visible,
+  .bg-primary :focus-visible {
+    outline-color: #ffffff;
+  }
+}
+
+/* Skip-Link: unsichtbar bis zum Tastaturfokus */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-250%);
+  background: var(--color-primary-deep);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+}
+
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Dauer-Animationen bei reduzierter Bewegung stilllegen.
+   Bewusst ungelayert, damit die Regel die animate-pulse-Utility schlägt. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse {
+    animation: none;
+  }
+}
+
 /* Seitliche Reveal-Offsets (data-reveal="left|right") dürfen keinen
    horizontalen Scrollbalken erzeugen */
 html,

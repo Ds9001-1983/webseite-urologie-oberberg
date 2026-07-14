@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import { MapPin, Phone, Mail, Send, CheckCircle } from "lucide-react";
 import { site } from "@/lib/site";
 
@@ -13,6 +13,12 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // Screenreader-Nutzer sollen die Bestätigung sofort hören
+  useEffect(() => {
+    if (submitted) successHeadingRef.current?.focus();
+  }, [submitted]);
 
   function validate() {
     const errs: Record<string, string> = {};
@@ -58,11 +64,18 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="lg:col-span-3">
             {submitted ? (
-              <div className="bg-cloud rounded-3xl p-12 text-center border border-border-light">
+              <div
+                role="status"
+                className="bg-cloud rounded-3xl p-12 text-center border border-border-light"
+              >
                 <div className="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-8 h-8 text-emerald-500" />
+                  <CheckCircle className="w-8 h-8 text-emerald-500" aria-hidden="true" />
                 </div>
-                <h3 className="font-heading text-2xl text-slate-dark mb-3">
+                <h3
+                  ref={successHeadingRef}
+                  tabIndex={-1}
+                  className="font-heading text-2xl text-slate-dark mb-3 outline-none"
+                >
                   Vielen Dank!
                 </h3>
                 <p className="text-muted">
@@ -73,14 +86,23 @@ export default function Contact() {
             ) : (
               <form
                 onSubmit={handleSubmit}
+                noValidate
                 className="bg-cloud rounded-3xl p-8 sm:p-10 border border-border-light space-y-5"
               >
                 <div>
-                  <label className="block text-slate-dark text-sm font-medium mb-2">
+                  <label
+                    htmlFor="contact-name"
+                    className="block text-slate-dark text-sm font-medium mb-2"
+                  >
                     Name *
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
+                    autoComplete="name"
+                    aria-required="true"
+                    aria-invalid={errors.name ? true : undefined}
+                    aria-describedby={errors.name ? "contact-name-error" : undefined}
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -89,17 +111,31 @@ export default function Contact() {
                     placeholder="Ihr vollständiger Name"
                   />
                   {errors.name && (
-                    <p className="text-red-500 text-xs mt-1.5">{errors.name}</p>
+                    <p
+                      id="contact-name-error"
+                      role="alert"
+                      className="text-red-700 text-xs mt-1.5"
+                    >
+                      {errors.name}
+                    </p>
                   )}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-slate-dark text-sm font-medium mb-2">
+                    <label
+                      htmlFor="contact-email"
+                      className="block text-slate-dark text-sm font-medium mb-2"
+                    >
                       E-Mail *
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
+                      autoComplete="email"
+                      aria-required="true"
+                      aria-invalid={errors.email ? true : undefined}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -108,17 +144,26 @@ export default function Contact() {
                       placeholder="ihre@email.de"
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-xs mt-1.5">
+                      <p
+                        id="contact-email-error"
+                        role="alert"
+                        className="text-red-700 text-xs mt-1.5"
+                      >
                         {errors.email}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="block text-slate-dark text-sm font-medium mb-2">
+                    <label
+                      htmlFor="contact-phone"
+                      className="block text-slate-dark text-sm font-medium mb-2"
+                    >
                       Telefon
                     </label>
                     <input
+                      id="contact-phone"
                       type="tel"
+                      autoComplete="tel"
                       value={formData.phone}
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
@@ -130,11 +175,18 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block text-slate-dark text-sm font-medium mb-2">
+                  <label
+                    htmlFor="contact-message"
+                    className="block text-slate-dark text-sm font-medium mb-2"
+                  >
                     Nachricht *
                   </label>
                   <textarea
+                    id="contact-message"
                     rows={5}
+                    aria-required="true"
+                    aria-invalid={errors.message ? true : undefined}
+                    aria-describedby={errors.message ? "contact-message-error" : undefined}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -143,7 +195,11 @@ export default function Contact() {
                     placeholder="Ihre Nachricht an uns..."
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-xs mt-1.5">
+                    <p
+                      id="contact-message-error"
+                      role="alert"
+                      className="text-red-700 text-xs mt-1.5"
+                    >
                       {errors.message}
                     </p>
                   )}
@@ -168,9 +224,9 @@ export default function Contact() {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
+                  <h3 className="font-semibold text-slate-dark text-sm mb-1">
                     Adresse
-                  </h4>
+                  </h3>
                   <p className="text-muted text-sm leading-relaxed">
                     {site.address.street}
                     <br />
@@ -186,9 +242,9 @@ export default function Contact() {
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
+                  <h3 className="font-semibold text-slate-dark text-sm mb-1">
                     Telefon
-                  </h4>
+                  </h3>
                   <a
                     href={site.phoneHref}
                     className="text-muted hover:text-primary text-sm transition-colors"
@@ -205,9 +261,9 @@ export default function Contact() {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-dark text-sm mb-1">
+                  <h3 className="font-semibold text-slate-dark text-sm mb-1">
                     E-Mail
-                  </h4>
+                  </h3>
                   <a
                     href={`mailto:${site.email}`}
                     className="text-muted hover:text-primary text-sm transition-colors"
@@ -222,7 +278,7 @@ export default function Contact() {
               <p className="text-white font-semibold text-sm mb-2">
                 Online-Termine
               </p>
-              <p className="text-white/70 text-xs mb-5">
+              <p className="text-white text-xs mb-5">
                 Buchen Sie Ihren Termin bequem online
               </p>
               <a

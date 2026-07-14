@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, CalendarCheck, Syringe } from "lucide-react";
+import AiBadge from "./AiBadge";
 import { site } from "@/lib/site";
 
 export default function Hero() {
@@ -11,7 +12,7 @@ export default function Hero() {
       <div data-hero-bg className="absolute inset-0">
         <Image
           src="/images/hero.png"
-          alt="Moderne Arztpraxis"
+          alt="Symbolbild (KI-generiert): Moderne Arztpraxis"
           fill
           priority
           sizes="100vw"
@@ -92,6 +93,10 @@ export default function Hero() {
 
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-white to-transparent" />
+
+      {/* Transparenz: Hintergrund ist KI-generiert (bewusst außerhalb von
+          data-hero-content, damit GSAP den Hinweis nie ausblendet) */}
+      <AiBadge className="bottom-4 right-4" />
     </section>
   );
 }

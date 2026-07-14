@@ -47,7 +47,8 @@ export default function ScrollFX() {
       const anchor = (e.target as HTMLElement).closest?.(
         'a[href^="#"]'
       ) as HTMLAnchorElement | null;
-      if (!anchor) return;
+      // Skip-Link nativ springen lassen — nur so wandert der Fokus mit
+      if (!anchor || anchor.hasAttribute("data-skip-link")) return;
       const hash = anchor.getAttribute("href") ?? "#";
       if (hash === "#") {
         e.preventDefault();

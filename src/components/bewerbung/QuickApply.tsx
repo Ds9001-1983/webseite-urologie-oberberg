@@ -11,7 +11,7 @@ export default function QuickApply() {
           <h2 className="font-heading text-2xl sm:text-3xl text-white mb-2">
             Lieber direkt anrufen?
           </h2>
-          <p className="text-white/75 text-sm sm:text-base mb-7 max-w-xl mx-auto">
+          <p className="text-white text-sm sm:text-base mb-7 max-w-xl mx-auto">
             Kein Problem – wir freuen uns auch über einen Anruf oder eine kurze
             Nachricht.
           </p>

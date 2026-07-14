@@ -25,7 +25,10 @@ interface LogoLockupProps {
 export function LogoLockup({
   markClassName = "text-primary",
   primaryTextClassName = "text-slate-dark",
-  secondaryTextClassName = "text-primary-light",
+  // primary-dark statt primary-light: auf hellem Grund braucht die Subline
+  // mindestens 4,5:1 Kontrast (WCAG AA); auf dunklem Grund explizit
+  // primary-light übergeben.
+  secondaryTextClassName = "text-primary-dark",
   className = "",
 }: LogoLockupProps) {
   return (

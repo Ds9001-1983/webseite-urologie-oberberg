@@ -30,7 +30,7 @@ export default function Navbar() {
               markClassName={scrolled ? "text-primary" : "text-white"}
               primaryTextClassName={scrolled ? "text-slate-dark" : "text-white"}
               secondaryTextClassName={
-                scrolled ? "text-primary-light" : "text-white/70"
+                scrolled ? "text-primary-dark" : "text-white/70"
               }
             />
           </a>
@@ -60,7 +60,9 @@ export default function Navbar() {
           <button
             className={`lg:hidden transition-colors duration-500 ${scrolled ? "text-slate-dark" : "text-white"}`}
             onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Menü öffnen"
+            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -68,6 +70,8 @@ export default function Navbar() {
       </div>
 
       <div
+        id="mobile-menu"
+        inert={!mobileOpen}
         className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
           mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}

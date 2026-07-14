@@ -53,7 +53,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${dmSerif.variable} ${plusJakarta.variable} antialiased`}>
-      <body className="min-h-screen flex flex-col font-body">{children}</body>
+      <body className="min-h-screen flex flex-col font-body">
+        <a href="#main" data-skip-link className="skip-link">
+          Zum Inhalt springen
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

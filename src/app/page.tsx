@@ -49,13 +49,15 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <About />
-      <Team />
-      <Services />
-      <Hours />
-      <Karriere />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <About />
+        <Team />
+        <Services />
+        <Hours />
+        <Karriere />
+        <Contact />
+      </main>
       <Footer />
       <ScrollFX />
       <script

@@ -28,7 +28,7 @@ export default function Datenschutz() {
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <main id="main" className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
         <div className="prose prose-sm max-w-none text-slate space-y-8">
           <section>
             <h2 className="font-heading text-xl text-slate-dark mb-3">
@@ -166,7 +166,7 @@ export default function Datenschutz() {
             ← Zurück zur Startseite
           </Link>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
