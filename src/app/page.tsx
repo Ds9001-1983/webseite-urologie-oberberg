@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Urologie Oberberg – Urologische Gemeinschaftspraxis Wiehl",
     description:
-      "Ihre Spezialisten für Urologie in Wiehl – Vorsorge, Diagnostik und Therapie.",
+      "Kinderurologie, Urologie der Frau, Männergesundheit, Diagnostik und ambulante Operationen in Wiehl.",
     url: "/",
   },
 };

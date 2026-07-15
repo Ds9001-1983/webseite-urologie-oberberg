@@ -66,22 +66,22 @@ export default function Hero() {
           {/* Vasektomie-Hinweis */}
           <div
             data-hero-item
-            className="mt-8 flex items-start gap-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 max-w-xl"
+            className="mt-8 flex items-start gap-4 bg-white shadow-xl rounded-2xl p-5 max-w-xl"
           >
-            <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-              <Syringe className="w-5 h-5 text-white" />
+            <div className="w-11 h-11 rounded-xl bg-sky flex items-center justify-center shrink-0">
+              <Syringe className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <p className="text-white font-semibold text-sm mb-1">
+              <p className="text-primary-dark font-semibold text-sm mb-1">
                 Vasektomie – Termine zeitnah möglich
               </p>
-              <p className="text-white/70 text-sm leading-relaxed mb-3">
+              <p className="text-primary-dark text-sm leading-relaxed mb-3">
                 Persönliche Beratung und Aufklärung. Ambulant &amp;
                 minimal-invasiv mit der No-Scalpel-Methode.
               </p>
               <a
                 href={`mailto:${site.vasektomieEmail}`}
-                className="inline-flex items-center gap-1.5 text-white text-sm font-semibold underline underline-offset-4 hover:text-white/80 transition-colors"
+                className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold underline underline-offset-4 hover:text-primary-dark transition-colors"
               >
                 Bitte schreiben Sie uns an, wir melden uns schnellstmöglich
                 bei Ihnen

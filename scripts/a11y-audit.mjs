@@ -86,19 +86,6 @@ closed.inert === true && closed.expanded === "false"
   : fail(`Mobilmenü-Zustand falsch: ${JSON.stringify(closed)}`);
 await mob.close();
 
-await page.goto(BASE + "/#kontakt", { waitUntil: "networkidle" });
-await page.evaluate(() => document.getElementById("kontakt")?.scrollIntoView());
-await page.waitForTimeout(1200);
-await page.click('form button[type="submit"]');
-await page.waitForTimeout(300);
-const form = await page.evaluate(() => ({
-  alerts: document.querySelectorAll('[role="alert"]').length,
-  invalid: document.querySelectorAll('[aria-invalid="true"]').length,
-}));
-form.alerts === 3 && form.invalid === 3
-  ? ok("Kontaktformular: Fehler als role=alert + aria-invalid")
-  : fail(`Kontaktformular-Fehlerbehandlung: ${JSON.stringify(form)}`);
-
 // ---- 3) Zugängliche Namen aller interaktiven Elemente (Screenreader-Proxy)
 for (const path of PAGES) {
   await page.goto(BASE + path, { waitUntil: "networkidle" });

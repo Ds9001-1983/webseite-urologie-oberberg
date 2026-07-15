@@ -5,14 +5,10 @@ const doctors = [
   {
     name: "Dr. med. Albert Antonyan",
     title: "Facharzt für Urologie",
-    description:
-      "Spezialisiert auf moderne bildgebende Verfahren wie Farbdoppler-Sonographie und 3D-Ultraschall-Diagnostik der Prostata.",
   },
   {
     name: "Aleksejs Gulans",
     title: "Facharzt für Urologie",
-    description:
-      "Langjährige Erfahrung in der urologischen Diagnostik und Therapie mit besonderem Schwerpunkt auf Vorsorge und Krebsfrüherkennung.",
   },
 ];
 
@@ -64,12 +60,9 @@ export default function Team() {
               <p className="text-primary text-xs font-semibold tracking-wider uppercase mb-2">
                 {doc.title}
               </p>
-              <h3 className="font-heading text-xl text-slate-dark mb-3">
+              <h3 className="font-heading text-xl text-slate-dark">
                 {doc.name}
               </h3>
-              <p className="text-muted text-sm leading-relaxed">
-                {doc.description}
-              </p>
             </div>
           ))}
         </div>
