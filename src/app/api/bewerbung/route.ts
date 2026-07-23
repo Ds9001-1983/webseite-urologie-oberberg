@@ -200,15 +200,22 @@ export async function POST(req: Request) {
       // (Buchstaben maskiert), um Paste-Artefakte (Quotes, Whitespace,
       // Zeilenumbrüche) in den Vercel-Env-Feldern zu erkennen. Nach Behebung
       // wieder entfernen.
-      const userShape = (process.env.SMTP_USER ?? "").replace(/[A-Za-z]/g, "x");
-      const passShape = (process.env.SMTP_PASS ?? "").replace(/[^\s"'`]/g, "x");
+      // Passwort nur als Zeichenklassen-Muster: a=Kleinbuchstabe,
+      // A=Großbuchstabe, 0=Ziffer, $=Sonderzeichen
+      const passPattern = (process.env.SMTP_PASS ?? "")
+        .replace(/[a-z]/g, "a")
+        .replace(/[A-Z]/g, "A")
+        .replace(/[0-9]/g, "0")
+        .replace(/[^aA0]/g, "$");
       console.error("[bewerbung] SMTP-Diagnose:", {
         host: JSON.stringify(process.env.SMTP_HOST),
         port: JSON.stringify(process.env.SMTP_PORT),
         secure: JSON.stringify(process.env.SMTP_SECURE),
-        userShape: JSON.stringify(userShape),
-        passShape: JSON.stringify(passShape),
+        user: JSON.stringify(process.env.SMTP_USER),
+        passPattern: JSON.stringify(passPattern),
         passLength: (process.env.SMTP_PASS ?? "").length,
+        from: JSON.stringify(process.env.BEWERBUNG_FROM ?? "(nicht gesetzt → SMTP_USER)"),
+        to: JSON.stringify(process.env.BEWERBUNG_TO),
       });
       return NextResponse.json(
         { ok: false, error: "delivery_failed" },
