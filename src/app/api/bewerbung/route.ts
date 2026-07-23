@@ -196,6 +196,20 @@ export async function POST(req: Request) {
     } catch (err) {
       // Bewerbung darf nie verloren gehen — vollständig loggen
       console.error("[bewerbung] SMTP-Versand fehlgeschlagen:", err, labels);
+      // TEMPORÄRE Diagnose für 535-Auth-Fehler: nur Struktur der Werte loggen
+      // (Buchstaben maskiert), um Paste-Artefakte (Quotes, Whitespace,
+      // Zeilenumbrüche) in den Vercel-Env-Feldern zu erkennen. Nach Behebung
+      // wieder entfernen.
+      const userShape = (process.env.SMTP_USER ?? "").replace(/[A-Za-z]/g, "x");
+      const passShape = (process.env.SMTP_PASS ?? "").replace(/[^\s"'`]/g, "x");
+      console.error("[bewerbung] SMTP-Diagnose:", {
+        host: JSON.stringify(process.env.SMTP_HOST),
+        port: JSON.stringify(process.env.SMTP_PORT),
+        secure: JSON.stringify(process.env.SMTP_SECURE),
+        userShape: JSON.stringify(userShape),
+        passShape: JSON.stringify(passShape),
+        passLength: (process.env.SMTP_PASS ?? "").length,
+      });
       return NextResponse.json(
         { ok: false, error: "delivery_failed" },
         { status: 502 }
