@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import {
   CHOICE_STEPS,
   CONTACT_PREFS,
@@ -14,15 +15,25 @@ import {
 /**
  * Nimmt Bewerbungen aus dem Klickfunnel entgegen.
  *
- * Versand: Solange BEWERBUNG_WEBHOOK_URL nicht gesetzt ist, wird die Bewerbung
- * nur im Server-Log ausgegeben (bewusste Entscheidung: "erstmal ohne Versand").
- * ⚠️ Vor dem Kampagnen-Start MUSS der Webhook konfiguriert werden, sonst
- * landen Bewerbungen ausschließlich in den Logs.
+ * Versandwege (in dieser Reihenfolge):
+ *   1. SMTP (bevorzugt) — sobald SMTP_HOST gesetzt ist, geht die Bewerbung
+ *      als E-Mail an BEWERBUNG_TO (z. B. Praxis-Postfach bei Alfahosting).
+ *   2. Webhook (Alternative) — BEWERBUNG_WEBHOOK_URL, z. B. n8n.
+ *   3. Nur Server-Log — ⚠️ Bewerbungen landen ausschließlich in den Logs.
  *
- * Env-Variablen (.env.local / Hosting):
- *   BEWERBUNG_WEBHOOK_URL=https://<n8n-host>/webhook/bewerbung-urologie
- *   BEWERBUNG_WEBHOOK_SECRET=<zufälliger String>   # optional, Header-Auth
+ * Env-Variablen (.env.local / Vercel):
+ *   SMTP_HOST=mail.urologie-oberberg.de   # Alfahosting-Mailserver
+ *   SMTP_PORT=587                          # 587 = STARTTLS, 465 = SSL
+ *   SMTP_SECURE=false                      # "true" nur bei Port 465
+ *   SMTP_USER=bewerbung@urologie-oberberg.de
+ *   SMTP_PASS=<Postfach-Passwort>
+ *   BEWERBUNG_TO=praxis@urologie-oberberg.de   # Empfänger, Komma-separiert möglich
+ *   BEWERBUNG_FROM=<Absender>              # optional, Standard: SMTP_USER
+ *   BEWERBUNG_WEBHOOK_URL=…                # optional, nur falls kein SMTP
+ *   BEWERBUNG_WEBHOOK_SECRET=…             # optional, Header-Auth für Webhook
  */
+
+export const runtime = "nodejs";
 
 function isValidPayload(body: unknown): body is ApplicationPayload {
   if (typeof body !== "object" || body === null) return false;
@@ -60,6 +71,90 @@ function isValidPayload(body: unknown): body is ApplicationPayload {
   return true;
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+interface RequestMeta {
+  ip: string;
+  userAgent: string;
+  receivedAt: string;
+}
+
+async function sendViaSmtp(
+  labels: Record<string, string>,
+  meta: RequestMeta
+): Promise<void> {
+  const port = Number(process.env.SMTP_PORT ?? 587);
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port,
+    secure: process.env.SMTP_SECURE === "true" || port === 465,
+    ...(process.env.SMTP_USER && {
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS ?? "",
+      },
+    }),
+    connectionTimeout: 8000,
+    greetingTimeout: 8000,
+    socketTimeout: 15000,
+  });
+
+  const from = process.env.BEWERBUNG_FROM ?? process.env.SMTP_USER ?? "";
+  const to = (process.env.BEWERBUNG_TO ?? process.env.SMTP_USER ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  const entries = Object.entries(labels);
+  const text = [
+    "Neue Bewerbung über den Klickfunnel (urologie-oberberg.de/bewerbung)",
+    "",
+    ...entries.map(([k, v]) => `${k}: ${v}`),
+    "",
+    "—",
+    `Eingegangen: ${meta.receivedAt}`,
+    meta.ip && `IP: ${meta.ip}`,
+    meta.userAgent && `Browser: ${meta.userAgent}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const rows = entries
+    .map(
+      ([k, v]) =>
+        `<tr><td style="padding:6px 16px 6px 0;color:#5b6b6a;white-space:nowrap;vertical-align:top">${escapeHtml(k)}</td><td style="padding:6px 0;color:#12332f">${escapeHtml(v)}</td></tr>`
+    )
+    .join("");
+  const html = `
+    <div style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif;max-width:560px">
+      <h2 style="color:#12332f;margin:0 0 4px">Neue Bewerbung</h2>
+      <p style="color:#5b6b6a;margin:0 0 16px">über den Klickfunnel auf urologie-oberberg.de/bewerbung</p>
+      <table style="border-collapse:collapse;font-size:15px">${rows}</table>
+      <p style="color:#8a9695;font-size:12px;margin-top:20px">
+        Eingegangen: ${escapeHtml(meta.receivedAt)}<br>
+        ${meta.ip ? `IP: ${escapeHtml(meta.ip)}<br>` : ""}
+        ${meta.userAgent ? `Browser: ${escapeHtml(meta.userAgent)}` : ""}
+      </p>
+    </div>`;
+
+  const applicantEmail = labels["E-Mail"];
+  await transporter.sendMail({
+    from: { name: "Bewerbungsfunnel Urologie Oberberg", address: from },
+    to,
+    subject: `Neue Bewerbung: ${labels["Name"]} – ${labels["Position"]}`,
+    ...(applicantEmail &&
+      applicantEmail !== "–" && { replyTo: applicantEmail }),
+    text,
+    html,
+  });
+}
+
 export async function POST(req: Request) {
   let body: unknown;
   try {
@@ -85,8 +180,30 @@ export async function POST(req: Request) {
   }
 
   const labels = Object.fromEntries(formatAnswers(payload));
-  const webhookUrl = process.env.BEWERBUNG_WEBHOOK_URL;
+  const meta: RequestMeta = {
+    ip: req.headers.get("x-forwarded-for") ?? "",
+    userAgent: req.headers.get("user-agent") ?? "",
+    receivedAt: `${new Date().toLocaleString("de-DE", {
+      timeZone: "Europe/Berlin",
+    })} Uhr (${new Date().toISOString()})`,
+  };
 
+  if (process.env.SMTP_HOST) {
+    try {
+      await sendViaSmtp(labels, meta);
+      console.log("[bewerbung] Per E-Mail versendet:", labels.Name);
+      return NextResponse.json({ ok: true });
+    } catch (err) {
+      // Bewerbung darf nie verloren gehen — vollständig loggen
+      console.error("[bewerbung] SMTP-Versand fehlgeschlagen:", err, labels);
+      return NextResponse.json(
+        { ok: false, error: "delivery_failed" },
+        { status: 502 }
+      );
+    }
+  }
+
+  const webhookUrl = process.env.BEWERBUNG_WEBHOOK_URL;
   if (webhookUrl) {
     try {
       const controller = new AbortController();
@@ -99,15 +216,7 @@ export async function POST(req: Request) {
             "x-webhook-secret": process.env.BEWERBUNG_WEBHOOK_SECRET,
           }),
         },
-        body: JSON.stringify({
-          ...payload,
-          labels,
-          meta: {
-            ip: req.headers.get("x-forwarded-for") ?? "",
-            userAgent: req.headers.get("user-agent") ?? "",
-            receivedAt: new Date().toISOString(),
-          },
-        }),
+        body: JSON.stringify({ ...payload, labels, meta }),
         signal: controller.signal,
       });
       clearTimeout(timeout);
@@ -126,7 +235,7 @@ export async function POST(req: Request) {
 
   // Kein Versand konfiguriert: Bewerbung landet nur im Server-Log.
   console.warn(
-    "[bewerbung] ⚠️ KEIN VERSAND KONFIGURIERT (BEWERBUNG_WEBHOOK_URL fehlt). Bewerbung nur im Log:",
+    "[bewerbung] ⚠️ KEIN VERSAND KONFIGURIERT (weder SMTP_HOST noch BEWERBUNG_WEBHOOK_URL gesetzt). Bewerbung nur im Log:",
     labels
   );
   return NextResponse.json({ ok: true });
