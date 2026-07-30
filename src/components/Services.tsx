@@ -58,6 +58,7 @@ const categories: ServiceCategory[] = [
       "Hypogonadismus (Testosteronmangel)",
       "Überaktive Blase",
       "Urologische und sexuell übertragbare Infektionen",
+      "Therapie von Feigwarzen (Condylomen)",
       "Erektile Dysfunktion",
       "Penisverkrümmung (IPP)",
     ],

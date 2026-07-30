@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, CalendarCheck, Syringe } from "lucide-react";
+import { ArrowRight, CalendarCheck, ShieldCheck, Syringe } from "lucide-react";
 import AiBadge from "./AiBadge";
 import { site } from "@/lib/site";
 
@@ -63,30 +63,58 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Vasektomie-Hinweis */}
-          <div
-            data-hero-item
-            className="mt-8 flex items-start gap-4 bg-white shadow-xl rounded-2xl p-5 max-w-xl"
-          >
-            <div className="w-11 h-11 rounded-xl bg-sky flex items-center justify-center shrink-0">
-              <Syringe className="w-5 h-5 text-primary" />
+          {/* Themen-Störer: Vasektomie & Feigwarzen-Therapie */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+            <div
+              data-hero-item
+              className="flex items-start gap-4 bg-white shadow-xl rounded-2xl p-5"
+            >
+              <div className="w-11 h-11 rounded-xl bg-sky flex items-center justify-center shrink-0">
+                <Syringe className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-primary-dark font-semibold text-sm mb-1">
+                  Vasektomie – Termine zeitnah möglich
+                </p>
+                <p className="text-primary-dark text-sm leading-relaxed mb-3">
+                  Persönliche Beratung und Aufklärung. Ambulant &amp;
+                  minimal-invasiv mit der No-Scalpel-Methode.
+                </p>
+                <a
+                  href={`mailto:${site.vasektomieEmail}`}
+                  className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold underline underline-offset-4 hover:text-primary-dark transition-colors"
+                >
+                  Per E-Mail anfragen
+                  <span className="sr-only"> – Vasektomie</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </a>
+              </div>
             </div>
-            <div>
-              <p className="text-primary-dark font-semibold text-sm mb-1">
-                Vasektomie – Termine zeitnah möglich
-              </p>
-              <p className="text-primary-dark text-sm leading-relaxed mb-3">
-                Persönliche Beratung und Aufklärung. Ambulant &amp;
-                minimal-invasiv mit der No-Scalpel-Methode.
-              </p>
-              <a
-                href={`mailto:${site.vasektomieEmail}`}
-                className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold underline underline-offset-4 hover:text-primary-dark transition-colors"
-              >
-                Bitte schreiben Sie uns an, wir melden uns schnellstmöglich
-                bei Ihnen
-                <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-              </a>
+
+            <div
+              data-hero-item
+              className="flex items-start gap-4 bg-white shadow-xl rounded-2xl p-5"
+            >
+              <div className="w-11 h-11 rounded-xl bg-sky flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-primary-dark font-semibold text-sm mb-1">
+                  Feigwarzen (Condylome) – diskrete Therapie
+                </p>
+                <p className="text-primary-dark text-sm leading-relaxed mb-3">
+                  Vertrauliche Beratung und moderne, wirksame Behandlung.
+                  Termine zeitnah möglich.
+                </p>
+                <a
+                  href={`mailto:${site.email}?subject=${encodeURIComponent("Anfrage Feigwarzen-Therapie")}`}
+                  className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold underline underline-offset-4 hover:text-primary-dark transition-colors"
+                >
+                  Per E-Mail anfragen
+                  <span className="sr-only"> – Feigwarzen-Therapie</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -34,6 +34,8 @@ export const metadata: Metadata = {
     "Männergesundheit",
     "Ultraschall",
     "Vasektomie",
+    "Feigwarzen",
+    "Condylome",
     "ambulante Operation",
     "Prostata",
   ],
